@@ -1,0 +1,1 @@
+import './wooCommerce/product-review'
