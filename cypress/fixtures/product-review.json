@@ -1,0 +1,23 @@
+{
+    "validReview": {
+        "product_id": 22,
+        "review": "Nice album!",
+        "reviewer": "Joah Doe",
+        "rating": 5
+    },
+    "changeValidReview": {
+        "product_id": 22,
+        "review": "Nice album!",
+        "reviewer": "Joah Doe",
+        "rating": 3
+    },
+    "invalidReview": {
+        "product_id": "invalid id",
+        "review": 252525,
+        "reviewer": 222222,
+        "rating": "invalid rating"
+    },
+    "deleteReview": {
+        "force": true
+    }
+}
