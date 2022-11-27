@@ -3,6 +3,7 @@
     "cypress": "^11.2.0"
   },
   "devDependencies": {
-    "@faker-js/faker": "^7.6.0"
+    "@faker-js/faker": "^7.6.0",
+    "chai": "^4.3.7"
   }
 }
