@@ -2,6 +2,7 @@ import tokenFixture from "../../../fixtures/token.json"
 import productReviewFixture from "../../../fixtures/product-review.json"
 import statusFixture from "../../../fixtures/status.json"
 import { faker } from "@faker-js/faker"
+import productReviewWooCommerceSchema from "../../../contracts/wooCommerce/productreview.contract"
 
 describe('Smoke Test', () => {
 
@@ -35,6 +36,8 @@ describe('Smoke Test', () => {
                 expect(updateResponse.body.reviewer_email).to.eq(reviewer_email)
                 expect(updateResponse.body.rating).to.eq(productReviewFixture.changeValidReview.rating)
             })
+
+            return productReviewWooCommerceSchema.validateAsync(response.body),
 
             cy.deleteProductReviewWooCommerce(
                 tokenFixture.token,

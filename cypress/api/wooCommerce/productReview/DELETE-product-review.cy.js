@@ -2,6 +2,7 @@ import tokenFixture from "../../../fixtures/token.json"
 import productReviewFixture from "../../../fixtures/product-review.json"
 import statusFixture from "../../../fixtures/status.json"
 import { faker } from "@faker-js/faker"
+import productReviewWooCommerceSchema from "../../../contracts/productreview.contract"
 
 describe('Smoke Test', () => {
 
@@ -17,6 +18,9 @@ describe('Smoke Test', () => {
             productReviewFixture.validReview.rating
         ).then((response) => {
             let id = response.body.id
+
+            return productReviewWooCommerceSchema.validateAsync(response.body),
+
             cy.deleteProductReviewWooCommerce(
                 tokenFixture.token,
                 id,
@@ -28,11 +32,3 @@ describe('Smoke Test', () => {
     })
 
 })
-
-// describe('Schema Test', () => {
-
-//     it('Should delete a product review', () => {
-        
-//     })
-
-// })

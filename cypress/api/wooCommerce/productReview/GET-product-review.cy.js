@@ -1,6 +1,6 @@
 import tokenFixture from "../../../fixtures/token.json"
-import productReviewFixture from "../../../fixtures/product-review.json"
 import statusFixture from "../../../fixtures/status.json"
+import productReviewWooCommerceSchema from "../../../contracts/wooCommerce/productreview.contract"
 import { faker } from "@faker-js/faker"
 
 describe('Smoke Test', () => {
@@ -11,6 +11,10 @@ describe('Smoke Test', () => {
             tokenFixture.token
         ).then((response) => {
             expect(response.status).to.eq(statusFixture.ok)
+
+            for (let index = 0; index < response.body.length; index++) {
+                return productReviewWooCommerceSchema.validateAsync(response.body[index])
+            }
         })
     })
 

@@ -1,6 +1,7 @@
 import tokenFixture from "../../../fixtures/token.json"
 import productReviewFixture from "../../../fixtures/product-review.json"
 import statusFixture from "../../../fixtures/status.json"
+import productReviewWooCommerceSchema from "../../../contracts/productreview.contract"
 import { faker } from "@faker-js/faker"
 
 describe('Smoke Test', () => {
@@ -16,6 +17,7 @@ describe('Smoke Test', () => {
             reviewer_email,
             productReviewFixture.validReview.rating
         ).then((response) => {
+            
             let id = response.body.id
 
             expect(response.status).to.eq(statusFixture.created)
@@ -24,6 +26,8 @@ describe('Smoke Test', () => {
             expect(response.body.reviewer).to.eq(productReviewFixture.validReview.reviewer)
             expect(response.body.reviewer_email).to.eq(reviewer_email)
             expect(response.body.rating).to.eq(productReviewFixture.validReview.rating)
+
+            return productReviewWooCommerceSchema.validateAsync(response.body),
 
             cy.deleteProductReviewWooCommerce(
                 tokenFixture.token,
