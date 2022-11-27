@@ -1,7 +1,7 @@
 import tokenFixture from "../../../fixtures/token.json"
 import productReviewFixture from "../../../fixtures/product-review.json"
 import statusFixture from "../../../fixtures/status.json"
-import productReviewWooCommerceSchema from "../../../contracts/productreview.contract"
+import productReviewWooCommerceSchema from "../../../contracts/wooCommerce/productreview.contract"
 import { faker } from "@faker-js/faker"
 
 describe('Smoke Test', () => {
