@@ -4,6 +4,7 @@
   },
   "devDependencies": {
     "@faker-js/faker": "^7.6.0",
-    "chai": "^4.3.7"
+    "chai": "^4.3.7",
+    "joi": "^17.6.3"
   }
 }
