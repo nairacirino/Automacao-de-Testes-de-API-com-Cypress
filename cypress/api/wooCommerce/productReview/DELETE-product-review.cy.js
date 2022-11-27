@@ -21,14 +21,83 @@ describe('Smoke Test', () => {
 
             return productReviewWooCommerceSchema.validateAsync(response.body),
 
+                cy.deleteProductReviewWooCommerce(
+                    tokenFixture.token,
+                    id,
+                    productReviewFixture.deleteReview.force
+                ).then((response) => {
+                    expect(response.status).to.eq(statusFixture.ok)
+                })
+        })
+    })
+
+})
+
+describe('Acceptance Tests', () => {
+
+    it('Should return status 401 when attempting to delete a product review without valid token', () => {
+        let reviewer_email = faker.internet.email()
+
+        cy.postProductReviewWooCommerce(
+            tokenFixture.token,
+            productReviewFixture.validReview.product_id,
+            productReviewFixture.validReview.review,
+            productReviewFixture.validReview.reviewer,
+            reviewer_email,
+            productReviewFixture.validReview.rating
+        ).then((postResponse) => {
+            var id = postResponse.body.id
             cy.deleteProductReviewWooCommerce(
-                tokenFixture.token,
+                tokenFixture.invalidToken,
                 id,
                 productReviewFixture.deleteReview.force
             ).then((response) => {
-                expect(response.status).to.eq(statusFixture.ok)
+                expect(response.status).to.eq(statusFixture.unauthorized)
+                cy.getProductReviewWooCommerce(
+                    '/'+ id,
+                    tokenFixture.token
+                ).then((response) => {
+                    expect(response.status).to.eq(statusFixture.ok)
+                })
+                cy.deleteProductReviewWooCommerce(
+                    tokenFixture.token,
+                    id,
+                    productReviewFixture.deleteReview.force
+                )
             })
         })
     })
 
+    it('Should return status 404 when attempting to delete a product review without informing the id', () => {
+        let reviewer_email = faker.internet.email()
+
+        cy.postProductReviewWooCommerce(
+            tokenFixture.token,
+            productReviewFixture.validReview.product_id,
+            productReviewFixture.validReview.review,
+            productReviewFixture.validReview.reviewer,
+            reviewer_email,
+            productReviewFixture.validReview.rating
+        ).then((postResponse) => {
+            var id = postResponse.body.id
+            cy.deleteProductReviewWooCommerce(
+                tokenFixture.validToken,
+                '',
+                productReviewFixture.deleteReview.force
+            ).then((response) => {
+                expect(response.status).to.eq(statusFixture.not_found)
+                cy.getProductReviewWooCommerce(
+                    '/'+ id,
+                    tokenFixture.token
+                ).then((response) => {
+                    expect(response.status).to.eq(statusFixture.ok)
+                })
+                cy.deleteProductReviewWooCommerce(
+                    tokenFixture.token,
+                    id,
+                    productReviewFixture.deleteReview.force
+                )
+            })
+        })
+    })
 })
