@@ -50,7 +50,7 @@ describe('Smoke Test', () => {
 
 })
 
-describe('Acceptance Test', () => {
+describe('Acceptance Tests', () => {
 
     it('Should return 401 when updating a product review without a valid token', () => {
         let reviewer_email = faker.internet.email()

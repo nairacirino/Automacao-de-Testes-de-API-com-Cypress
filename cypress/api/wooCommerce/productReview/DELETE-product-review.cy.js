@@ -8,7 +8,6 @@ describe('Smoke Test', () => {
 
     it('Should delete a product review', () => {
         let reviewer_email = faker.internet.email()
-
         cy.postProductReviewWooCommerce(
             tokenFixture.token,
             productReviewFixture.validReview.product_id,
@@ -18,9 +17,7 @@ describe('Smoke Test', () => {
             productReviewFixture.validReview.rating
         ).then((response) => {
             let id = response.body.id
-
             return productReviewWooCommerceSchema.validateAsync(response.body),
-
                 cy.deleteProductReviewWooCommerce(
                     tokenFixture.token,
                     id,
@@ -37,7 +34,6 @@ describe('Acceptance Tests', () => {
 
     it('Should return status 401 when attempting to delete a product review without valid token', () => {
         let reviewer_email = faker.internet.email()
-
         cy.postProductReviewWooCommerce(
             tokenFixture.token,
             productReviewFixture.validReview.product_id,
@@ -70,7 +66,6 @@ describe('Acceptance Tests', () => {
 
     it('Should return status 404 when attempting to delete a product review without informing the id', () => {
         let reviewer_email = faker.internet.email()
-
         cy.postProductReviewWooCommerce(
             tokenFixture.token,
             productReviewFixture.validReview.product_id,

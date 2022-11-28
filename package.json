@@ -1,13 +1,17 @@
 {
   "scripts": {
-    "cy:run:allure": "npx cypress run --env allure=true"
+    "cy:run:allure": "npx cypress run --env allure=true",
+    "allure:generate": "allure generate allure-results",
+    "allure:open": "allure open allure-report",
+    "allure:all": "npm-run-all -s -c cy:run:allure allure:generate allure:open"
   },
   "devDependencies": {
-    "cypress": "^11.2.0",
     "@faker-js/faker": "^7.6.0",
     "@shelex/cypress-allure-plugin": "^2.34.0",
     "allure-commandline": "^2.20.1",
     "chai": "^4.3.7",
-    "joi": "^17.6.3"
+    "cypress": "^11.2.0",
+    "joi": "^17.6.3",
+    "npm-run-all": "^4.1.5"
   }
 }

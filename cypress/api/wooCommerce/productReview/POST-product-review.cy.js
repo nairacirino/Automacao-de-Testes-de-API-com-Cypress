@@ -39,7 +39,7 @@ describe('Smoke Test', () => {
 
 })
 
-describe('Acceptance Test', () => {
+describe('Acceptance Tests', () => {
 
     it('Should return status 409 when attempting to create a duplicated product review', () => {
         let reviewer_email = faker.internet.email()
