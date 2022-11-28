@@ -1,9 +1,12 @@
 {
-  "dependencies": {
-    "cypress": "^11.2.0"
+  "scripts": {
+    "cy:run:allure": "npx cypress run --env allure=true"
   },
   "devDependencies": {
+    "cypress": "^11.2.0",
     "@faker-js/faker": "^7.6.0",
+    "@shelex/cypress-allure-plugin": "^2.34.0",
+    "allure-commandline": "^2.20.1",
     "chai": "^4.3.7",
     "joi": "^17.6.3"
   }
