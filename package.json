@@ -1,7 +1,7 @@
 {
   "scripts": {
     "cy:run:allure": "npx cypress run --env allure=true",
-    "allure:generate": "allure generate allure-results",
+    "allure:generate": "allure generate allure-results --clean",
     "allure:open": "allure open allure-report",
     "allure:all": "npm-run-all -s -c cy:run:allure allure:generate allure:open"
   },

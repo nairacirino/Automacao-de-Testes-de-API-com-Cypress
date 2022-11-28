@@ -414,7 +414,7 @@ describe('Delete a Product Review', () => {
 })
 
 describe('Retrieve all Product Review', () => {
-    it.only('Should retrieve all review', () => {
+    it('Should retrieve all review', () => {
         cy.getProductReviewWooCommerce(
             "",
             tokenFixture.token
