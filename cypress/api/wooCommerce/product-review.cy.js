@@ -195,6 +195,34 @@ describe('Create a Product Review', () => {
             expect(response.status).to.eq(statusFixture.bad_request)
         })
     })
+
+    it('Should return status 400 when attempting to create a product review with rating < 0', () => {
+        let reviewer_email = faker.internet.email()
+        cy.postProductReviewWooCommerce(
+            tokenFixture.token,
+            productReviewFixture.validReview.product_id,
+            productReviewFixture.validReview.review,
+            productReviewFixture.validReview.reviewer,
+            reviewer_email,
+            -1
+        ).then((response) => {
+            expect(response.status).to.eq(statusFixture.bad_request)
+        })
+    })
+
+    it('Should return status 400 when attempting to create a product review with rating > 5', () => {
+        let reviewer_email = faker.internet.email()
+        cy.postProductReviewWooCommerce(
+            tokenFixture.token,
+            productReviewFixture.validReview.product_id,
+            productReviewFixture.validReview.review,
+            productReviewFixture.validReview.reviewer,
+            reviewer_email,
+            6
+        ).then((response) => {
+            expect(response.status).to.eq(statusFixture.bad_request)
+        })
+    })
 })
 
 describe('Update a Product Review', () => {
